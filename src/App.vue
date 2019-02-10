@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <TranscriptionsList v-bind:items="transcriptions"/>
+    <TranscriptionsList v-bind:items="transcriptions" v-on:add-row="add()"/>
   </div>
 </template>
 
@@ -32,6 +32,16 @@ export default {
         }
       ]
     };
+  },
+
+  methods: {
+    add() {
+      this.transcriptions = this.transcriptions.concat({
+        id: Math.max(...this.transcriptions.map(item => item.id)) + 1,
+        voice: '',
+        text: ''
+      });
+    }
   }
 };
 </script>
