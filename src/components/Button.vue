@@ -1,6 +1,6 @@
 <template>
   <button @keydown.enter.native="triggerClick">
-    <Icon :fileName="src"/>
+    <Icon :fileName="iconFile"/>
   </button>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: "Button",
 
   props: {
-    src: String
+    iconFile: String
   },
 
   components: {

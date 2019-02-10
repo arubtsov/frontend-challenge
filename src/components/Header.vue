@@ -1,19 +1,19 @@
 <template>
   <header>
     <h1>Transcriptions</h1>
-    <Button src="upload.svg"/>
-    <Button src="fetch-document.svg"/>    
+    <Button iconFile="upload.svg"/>
+    <Button iconFile="fetch-document.svg" v-on:click.native="$emit('fetch')"/>
   </header>
 </template>
 
 <script>
-import Button from './Button';
+import Button from "./Button";
 
 export default {
   name: "Header",
 
   components: {
-      Button
+    Button
   }
 };
 </script>

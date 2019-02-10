@@ -6,7 +6,7 @@
         <p>{{item.text}}</p>
       </li>
     </ul>
-    <Button src="add-row.svg" v-on:click.native="$emit('add-row')"/>
+    <Button iconFile="add-row.svg" v-on:click.native="$emit('add-row')"/>
   </main>
 </template>
 
