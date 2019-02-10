@@ -1,15 +1,21 @@
 <template>
   <button @keydown.enter.native="triggerClick">
-    <img :src="require(`@/assets/${src}`)">  
+    <Icon :fileName="src"/>
   </button>
 </template>
 
 <script>
+import Icon from "./Icon";
+
 export default {
   name: "Button",
-  
+
   props: {
     src: String
+  },
+
+  components: {
+    Icon
   },
 
   methods: {
