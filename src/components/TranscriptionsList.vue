@@ -1,17 +1,15 @@
 <template>
   <main>
     <ul>
-      <li v-for="item in items" v-bind:key="item.id">
-        <p>{{item.voice}}</p>
-        <p>{{item.text}}</p>
-      </li>
+      <Transcription v-for="item in items" :key="item.id" :data="item"/>
     </ul>
-    <Button iconFile="add-row.svg" v-on:click.native="$emit('add-row')"/>
+    <Button iconFile="add-row.svg" @click.native="$emit('add-row')"/>
   </main>
 </template>
 
 
 <script>
+import Transcription from './Transcription';
 import Button from "./Button";
 
 export default {
@@ -22,6 +20,7 @@ export default {
   },
 
   components: {
+    Transcription,
     Button
   }
 };
