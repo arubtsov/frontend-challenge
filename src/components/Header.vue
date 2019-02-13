@@ -2,7 +2,7 @@
   <header>
     <h1>Transcriptions</h1>
     <Button iconFile="upload.svg"/>
-    <Button iconFile="fetch-document.svg" v-on:click.native="$emit('fetch')"/>
+    <Button iconFile="fetch-document.svg" @click.native="$emit('fetch')"/>
   </header>
 </template>
 
