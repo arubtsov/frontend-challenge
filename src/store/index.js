@@ -2,11 +2,18 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-import { ADD_TRANSCRIPTION, REMOVE_TRANSCRIPTION, FETCH_DATA_SUCCESS } from './mutatuion-types';
-import { FETCH_DATA } from './action-types';
+Vue.use(Vuex);
+
+import {
+    ADD_TRANSCRIPTION,
+    REMOVE_TRANSCRIPTION,
+    FETCH_DATA_SUCCESS,
+    UPLOAD_DATA_SUCCESS
+} from './mutatuion-types';
+import { FETCH_DATA, UPLOAD_DATA } from './action-types';
 import { getNewId } from './utils';
 
-Vue.use(Vuex);
+const ENDPOINT_URL = "http://www.mocky.io/v2/5ae1c5792d00004d009d7e5c";
 
 export const store = new Vuex.Store({
     state: {
@@ -31,14 +38,26 @@ export const store = new Vuex.Store({
 
         [FETCH_DATA_SUCCESS] (state, transcriptions) {
             state.transcriptions = transcriptions;
+        },
+
+        [UPLOAD_DATA_SUCCESS] () {
+            //TODO: implement visual feedback
         }
     },
 
     actions: {
         [FETCH_DATA] ({ commit }) {
             return axios
-                .get("http://www.mocky.io/v2/5ae1c5792d00004d009d7e5c")
+                .get(ENDPOINT_URL)
                 .then(response => commit(FETCH_DATA_SUCCESS, response.data));
+        },
+
+        [UPLOAD_DATA] ({ commit, state }) {
+            return axios
+                .post(ENDPOINT_URL, {
+                    data: state.transcriptions
+                })
+                .then(() => commit(UPLOAD_DATA_SUCCESS));
         }
     }
 });
