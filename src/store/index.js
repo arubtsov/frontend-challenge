@@ -8,7 +8,9 @@ import {
     ADD_TRANSCRIPTION,
     REMOVE_TRANSCRIPTION,
     FETCH_DATA_SUCCESS,
-    UPLOAD_DATA_SUCCESS
+    FETCH_DATA_FAIL,
+    UPLOAD_DATA_SUCCESS,
+    UPLOAD_DATA_FAIL
 } from './mutatuion-types';
 import { FETCH_DATA, UPLOAD_DATA } from './action-types';
 import { getNewId } from './utils';
@@ -40,8 +42,18 @@ export const store = new Vuex.Store({
             state.transcriptions = transcriptions;
         },
 
+        [FETCH_DATA_FAIL] (state, error) {
+            //TODO: refactor error notification
+            alert(error);
+        },
+
         [UPLOAD_DATA_SUCCESS] () {
             //TODO: implement visual feedback
+        },
+
+        [UPLOAD_DATA_FAIL] (state, error) {
+            //TODO: refactor error notification
+            alert(error);
         }
     },
 
@@ -49,7 +61,8 @@ export const store = new Vuex.Store({
         [FETCH_DATA] ({ commit }) {
             return axios
                 .get(ENDPOINT_URL)
-                .then(response => commit(FETCH_DATA_SUCCESS, response.data));
+                .then(response => commit(FETCH_DATA_SUCCESS, response.data))
+                .catch(error => commit(FETCH_DATA_FAIL, error));
         },
 
         [UPLOAD_DATA] ({ commit, state }) {
@@ -57,7 +70,8 @@ export const store = new Vuex.Store({
                 .post(ENDPOINT_URL, {
                     data: state.transcriptions
                 })
-                .then(() => commit(UPLOAD_DATA_SUCCESS));
+                .then(() => commit(UPLOAD_DATA_SUCCESS))
+                .catch(error => commit(UPLOAD_DATA_FAIL, error));
         }
     }
 });
