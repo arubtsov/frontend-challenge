@@ -7,6 +7,7 @@ Vue.use(Vuex);
 import {
     ADD_TRANSCRIPTION,
     REMOVE_TRANSCRIPTION,
+    TOGGLE_TRANSCRIPTION_CHECKED,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAIL,
     UPLOAD_DATA_SUCCESS,
@@ -19,7 +20,8 @@ const ENDPOINT_URL = "http://www.mocky.io/v2/5ae1c5792d00004d009d7e5c";
 
 export const store = new Vuex.Store({
     state: {
-        transcriptions: []
+        transcriptions: [],
+        checked: {}
     },
 
     mutations: {
@@ -36,6 +38,13 @@ export const store = new Vuex.Store({
 
         [REMOVE_TRANSCRIPTION] (state, id) {
             state.transcriptions = state.transcriptions.filter(item => item.id !== id);
+        },
+
+        [TOGGLE_TRANSCRIPTION_CHECKED] (state, id) {
+            state.checked = {
+                ...state.checked,
+                [id]: !state.checked[id]
+            };
         },
 
         [FETCH_DATA_SUCCESS] (state, transcriptions) {

@@ -1,5 +1,6 @@
 <template>
   <li>
+    <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
     <input type="text" v-model="data.voice">
     <textarea v-model="data.text"/>
     <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
@@ -7,10 +8,14 @@
 </template>
 
 <script>
-import { REMOVE_TRANSCRIPTION } from "../store/mutatuion-types.js";
+import {
+  REMOVE_TRANSCRIPTION,
+  TOGGLE_TRANSCRIPTION_CHECKED
+} from "../store/mutatuion-types.js";
 import { mapMutations } from "vuex";
 
 import Button from "./Button";
+import CheckBox from "./CheckBox";
 
 export default {
   name: "Transcription",
@@ -19,12 +24,22 @@ export default {
     data: Object
   },
 
+  computed: {
+    checked() {
+      return !!this.$store.state.checked[this.data.id];
+    }
+  },
+
   methods: {
-    ...mapMutations({ remove: REMOVE_TRANSCRIPTION })
+    ...mapMutations({
+      remove: REMOVE_TRANSCRIPTION,
+      toggleChecked: TOGGLE_TRANSCRIPTION_CHECKED
+    })
   },
 
   components: {
-    Button
+    Button,
+    CheckBox
   }
 };
 </script>
