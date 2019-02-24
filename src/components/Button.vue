@@ -1,5 +1,5 @@
 <template>
-  <button @keydown.enter.native="triggerClick">
+  <button class="flex" @keydown.enter.native="triggerClick">
     <Icon :fileName="iconFile"/>
   </button>
 </template>
@@ -25,3 +25,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+button {
+  background-color: initial;
+  border: none;
+  padding: 0;    
+  cursor: pointer;
+}
+</style>
