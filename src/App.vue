@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="flex column">
     <Header/>
     <TranscriptionsList/>
   </div>
@@ -20,4 +20,25 @@ export default {
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+body {
+  margin: 0;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.column {
+  flex-direction: column;
+}
+
+.flex.centred {
+  align-items: center;
+}
 </style>
