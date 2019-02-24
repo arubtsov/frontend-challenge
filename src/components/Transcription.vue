@@ -1,10 +1,12 @@
 <template>
-  <li>
-    <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
-    <Icon fileName="person.svg"/>
-    <input type="text" v-model="data.voice">
+  <li class="flex column">
+    <div class="header flex centred">
+      <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
+      <Icon fileName="person.svg"/>
+      <input type="text" v-model="data.voice">
+      <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
+    </div>
     <textarea v-model="data.text"/>
-    <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
   </li>
 </template>
 
@@ -46,3 +48,39 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.header > button {
+  visibility: hidden;
+  margin-left: auto;
+}
+
+li:hover .header > button {
+  visibility: visible;
+}
+
+.header > img {
+  margin-left: 16px;
+}
+
+input {
+  margin-left: 8px;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #566074;
+}
+
+textarea {
+  margin: 6px 29px 0 66px;
+  flex: 1;
+  border: none;
+  resize: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: #778195;
+}
+</style>
+
