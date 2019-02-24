@@ -6,7 +6,9 @@
       <input type="text" v-model="data.voice">
       <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
     </div>
-    <textarea v-model="data.text"/>
+    <ResizbleTextArea>
+      <textarea v-model.trim="data.text" rows="1" wrap="hard"/>
+    </ResizbleTextArea>
   </li>
 </template>
 
@@ -20,6 +22,7 @@ import { mapMutations } from "vuex";
 import Button from "./Button";
 import CheckBox from "./CheckBox";
 import Icon from "./Icon";
+import ResizbleTextArea from "./ResizableTextArea.js";
 
 export default {
   name: "Transcription",
@@ -44,7 +47,8 @@ export default {
   components: {
     Button,
     CheckBox,
-    Icon
+    Icon,
+    ResizbleTextArea
   }
 };
 </script>
@@ -52,7 +56,7 @@ export default {
 <style scoped>
 .header > button {
   visibility: hidden;
-  margin-left: auto;
+  margin-left: 13px;
 }
 
 li:hover .header > button {
@@ -70,13 +74,16 @@ input {
   font-weight: 600;
   font-size: 16px;
   color: #566074;
+  flex: 1;
+  padding-left: 1px;
 }
 
 textarea {
   margin: 6px 29px 0 66px;
-  flex: 1;
   border: none;
   resize: none;
+  padding: 0;
+  max-height: 202px;
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
   font-size: 16px;
