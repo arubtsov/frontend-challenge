@@ -1,5 +1,5 @@
 <template>
-  <header class="flex centred">
+  <header>
     <MainColumn class="container flex centred">
       <h1>Transcriptions</h1>
       <Button iconFile="upload.svg" @click.native="upload()"/>
@@ -33,7 +33,6 @@ export default {
 header {
   z-index: 1;
   box-shadow: 0px 1px 2px 0px #bcbdbe, 0px 1px 3px 0px #bcbdbe;
-  height: 69px;
 }
 
 h1 {
@@ -46,6 +45,7 @@ h1 {
 .container {
   justify-content: space-between;
   padding: 0 24px;
+  height: 69px;
 }
 
 h1 {
