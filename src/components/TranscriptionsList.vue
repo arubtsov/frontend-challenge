@@ -35,14 +35,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import (reference) '../assets/variables.less';
+
 main {
   height: 100%;
   background-color: #f6f7f8;
 }
 
 .container > * {
-  margin-top: 24px;
+  margin-top: @primary-padding;
 }
 
 ul {
@@ -50,16 +52,16 @@ ul {
   width: 100%;  
   padding: 0;
   margin: 0;
-  border: 1px solid #eaedef;
+  border: 1px solid @list-border-color;
   box-sizing: border-box;
   background-color: white;
 }
 
 li {
-  padding: 24px;
-}
+  padding: @primary-padding;
 
-li:not(:last-child) {
-  border-bottom: 1px solid #eaedef;
+  &:not(:last-child) {
+    border-bottom: 1px solid @list-border-color;
+  }
 }
 </style>

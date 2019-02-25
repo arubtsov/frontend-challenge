@@ -7,7 +7,7 @@
       <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
     </div>
     <ResizbleTextArea>
-      <textarea v-model.trim="data.text" rows="1" wrap="hard"/>
+      <textarea v-model.trim="data.text" rows="1"/>
     </ResizbleTextArea>
   </li>
 </template>
@@ -53,29 +53,31 @@ export default {
 };
 </script>
 
-<style scoped>
-.header > button {
-  visibility: hidden;
-  margin-left: 13px;
+<style lang="less" scoped>
+.header {
+  button {
+    visibility: hidden;
+    margin-left: 13px;
+  }
+
+  img {
+    margin-left: 16px;
+  }
+
+  input {
+    margin-left: 8px;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #566074;
+    flex: 1;
+    padding-left: 1px;
+  }
 }
 
 li:hover .header > button {
   visibility: visible;
-}
-
-.header > img {
-  margin-left: 16px;
-}
-
-input {
-  margin-left: 8px;
-  border: none;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: #566074;
-  flex: 1;
-  padding-left: 1px;
 }
 
 textarea {

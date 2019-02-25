@@ -29,10 +29,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import (reference) '../assets/variables.less';
+
 header {
   z-index: 1;
-  box-shadow: 0px 1px 2px 0px #bcbdbe, 0px 1px 3px 0px #bcbdbe;
+  box-shadow: 0px 1px 2px 0px @shadow-color, 0px 1px 3px 0px @shadow-color;
 }
 
 h1 {
@@ -44,7 +46,7 @@ h1 {
 
 .container {
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 @primary-padding;
   height: 69px;
 }
 
@@ -53,6 +55,6 @@ h1 {
 }
 
 button {
-  margin-left: 24px;
+  margin-left: @primary-padding;
 }
 </style>

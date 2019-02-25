@@ -19,26 +19,29 @@ export default {
 };
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
+<style lang="less">
+@import (css) url(https://fonts.googleapis.com/css?family=Montserrat);
+@import "./assets/variables.less";
 
 body {
   margin: 0;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
 }
 
 .flex {
   display: flex;
-}
 
-.flex.column {
-  flex-direction: column;
-}
+  &.column {
+    flex-direction: column;
+  }
 
-.flex.centred {
-  align-items: center;
+  &.centred {
+    align-items: center;
+  }
 }
 </style>
