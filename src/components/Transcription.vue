@@ -3,11 +3,11 @@
     <div class="header flex centred">
       <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
       <Icon fileName="person.svg"/>
-      <input type="text" v-model="data.voice">
+      <input type="text" v-model="data.voice" placeholder="Enter transcription's name">
       <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
     </div>
     <ResizbleTextArea>
-      <textarea v-model.trim="data.text" rows="1"/>
+      <textarea v-model.trim="data.text" rows="1" placeholder="Enter transcription's text"/>
     </ResizbleTextArea>
   </li>
 </template>
@@ -54,6 +54,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import (reference) "../assets/variables.less";
+
+li {
+  & * {
+    font-size: 16px;
+  }
+
+  &:hover .header > button {
+    visibility: visible;
+  }
+}
+
 .header {
   button {
     visibility: hidden;
@@ -65,19 +77,17 @@ export default {
   }
 
   input {
+    flex: 1;
     margin-left: 8px;
     border: none;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    font-size: 16px;
-    color: #566074;
-    flex: 1;
-    padding-left: 1px;
-  }
-}
+    color: @transcription-name-color;
 
-li:hover .header > button {
-  visibility: visible;
+    &::placeholder {
+      color: fade(@transcription-name-color, 50%);
+    }
+  }
 }
 
 textarea {
@@ -88,8 +98,11 @@ textarea {
   max-height: 202px;
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
-  font-size: 16px;
-  color: #778195;
+  color: @transcription-text-color;
+
+  &::placeholder {
+    color: fade(@transcription-text-color, 50%);
+  }
 }
 </style>
 
