@@ -22,26 +22,5 @@ export default {
 <style lang="less">
 @import (css) url(https://fonts.googleapis.com/css?family=Montserrat);
 @import "./assets/variables.less";
-
-body {
-  margin: 0;
-}
-
-html,
-body,
-#app {
-  height: 100%;
-}
-
-.flex {
-  display: flex;
-
-  &.column {
-    flex-direction: column;
-  }
-
-  &.centred {
-    align-items: center;
-  }
-}
+@import "./assets/global-styles.less";
 </style>
