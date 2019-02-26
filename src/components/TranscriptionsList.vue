@@ -36,20 +36,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import (reference) '../assets/variables.less';
+@import (reference) "../assets/variables.less";
 
 main {
   height: 100%;
   background-color: #f6f7f8;
+  padding: @primary-padding 0;
 }
 
-.container > * {
+.container > button:not(:first-child) {
   margin-top: @primary-padding;
 }
 
 ul {
   list-style: none;
-  width: 100%;  
+  width: 100%;
   padding: 0;
   margin: 0;
   border: 1px solid @list-border-color;

@@ -21,6 +21,5 @@ export default {
 
 <style lang="less">
 @import (css) url(https://fonts.googleapis.com/css?family=Montserrat);
-@import "./assets/variables.less";
 @import "./assets/global-styles.less";
 </style>

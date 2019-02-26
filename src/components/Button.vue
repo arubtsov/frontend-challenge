@@ -1,5 +1,5 @@
 <template>
-  <button class="flex" @keydown.enter.native="triggerClick">
+  <button class="flex focus-outline" @keydown.enter.native="triggerClick">
     <Icon :fileName="iconFile"/>
   </button>
 </template>

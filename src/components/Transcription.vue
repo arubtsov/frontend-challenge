@@ -3,11 +3,11 @@
     <div class="header flex centred">
       <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
       <Icon fileName="person.svg"/>
-      <input type="text" v-model="data.voice" placeholder="Enter transcription's name">
+      <input class="focus-outline" type="text" v-model="data.voice" placeholder="Enter transcription's name">
       <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
     </div>
     <ResizbleTextArea>
-      <textarea v-model.trim="data.text" rows="1" placeholder="Enter transcription's text"/>
+      <textarea class="focus-outline" v-model.trim="data.text" rows="1" placeholder="Enter transcription's text"/>
     </ResizbleTextArea>
   </li>
 </template>

@@ -1,5 +1,5 @@
 <template>  
-    <img :src="require(`@/assets/${fileName}`)"/>
+    <img :src="require(`@/assets/${fileName}`)" draggable="false"/>
 </template>
 
 <script>

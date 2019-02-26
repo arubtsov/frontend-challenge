@@ -29,31 +29,36 @@ export default {
 };
 </script>
 
-<style scoped>
-input, div {
+<style lang="less" scoped>
+@import (reference) "../assets/global-styles.less";
+
+div {
   width: 16px;
   height: 16px;
 }
 
 input {
   margin: 0;
+  width: 0;
+  height: 0;
   position: absolute;
+  appearance: none;
 }
 
-input:focus {
-  outline-offset: 5px !important;
+input:focus + div {
+  .purple-dotted-outline;
 }
 
-div {  
+div {
   border-radius: 2px;
   box-sizing: border-box;
-  border:  2px solid #859EFF;
+  border: 2px solid @purple-color;
   background-color: white;
   z-index: 1;
 }
 
 input:checked ~ div {
-  background-image: url('../assets/check-box.svg');
+  background-image: url("../assets/check-box.svg");
   border: none;
 }
 
