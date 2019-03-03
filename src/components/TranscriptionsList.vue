@@ -39,12 +39,12 @@ export default {
 @import (reference) "../assets/variables.less";
 
 main {
-  height: 100%;
+  flex: 1;
   background-color: #f6f7f8;
   padding: @primary-padding 0;
 }
 
-.container > button:not(:first-child) {
+.container > button {
   margin-top: @primary-padding;
 }
 
