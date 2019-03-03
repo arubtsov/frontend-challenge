@@ -57,7 +57,8 @@ export const store = new Vuex.Store({
         },
 
         [UPLOAD_DATA_SUCCESS] () {
-            //TODO: implement visual feedback
+            //TODO: refactor visual feedback
+            alert('Transcriptions have been uploaded.');
         },
 
         [UPLOAD_DATA_FAIL] (state, error) {
