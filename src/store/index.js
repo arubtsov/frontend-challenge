@@ -68,20 +68,26 @@ export const store = new Vuex.Store({
     },
 
     actions: {
-        [FETCH_DATA] ({ commit }) {
-            return axios
-                .get(ENDPOINT_URL)
-                .then(response => commit(FETCH_DATA_SUCCESS, response.data))
-                .catch(error => commit(FETCH_DATA_FAIL, error));
+        async [FETCH_DATA] ({ commit }) {
+            try {
+                const response = await axios.get(ENDPOINT_URL);
+
+                return commit(FETCH_DATA_SUCCESS, response.data);
+            }
+            catch (error) {
+                return commit(FETCH_DATA_FAIL, error);
+            }
         },
 
-        [UPLOAD_DATA] ({ commit, state }) {
-            return axios
-                .post(ENDPOINT_URL, {
-                    data: state.transcriptions
-                })
-                .then(() => commit(UPLOAD_DATA_SUCCESS))
-                .catch(error => commit(UPLOAD_DATA_FAIL, error));
+        async [UPLOAD_DATA] ({ commit, state }) {
+            try {
+                await axios.post(ENDPOINT_URL, { data: state.transcriptions });
+                
+                return commit(UPLOAD_DATA_SUCCESS);
+            }
+            catch (error) {
+                return commit(UPLOAD_DATA_FAIL, error);
+            }
         }
     }
 });
