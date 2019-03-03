@@ -1,8 +1,10 @@
 import { expect } from 'chai';
-import { mount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import TranscriptionsList from '@/components/TranscriptionsList.vue';
+import Transcription from '@/components/Transcription.vue';
+import Button from '@/components/Button.vue';
 import { ADD_TRANSCRIPTION } from '../../src/store/mutatuion-types';
 
 const localVue = createLocalVue();
@@ -36,25 +38,29 @@ describe('TranscriptionsList.vue', () => {
     });
   });
 
-  it('should not render list if there is no transcriptions', () => {
-    const wrapper = mount(TranscriptionsList, { store, localVue });
+  it('should not render list and button if there is no transcriptions', () => {
+    const wrapper = shallowMount(TranscriptionsList, { store, localVue });
 
     expect(wrapper.contains('ul')).eql(false);
+    expect(wrapper.findAll(Button).length).eql(0);
   });
 
-  it('should render list item for each transcription', () => {
+  it('should render Transcription component for each item in state and "add" button', () => {
     transcriptions = [{ id: 0, voice: '', text: '' }, { id: 1, voice: '', text: '' }];
 
-    const wrapper = mount(TranscriptionsList, { store, localVue });
+    const wrapper = shallowMount(TranscriptionsList, { store, localVue });
 
     expect(wrapper.contains('ul')).eql(true);
-    expect(wrapper.findAll('li').length).eql(2);
+    expect(wrapper.findAll(Transcription).length).eql(2);
+    expect(wrapper.findAll(Button).length).eql(1);
   });
 
   it('should add transcription on add button click', () => {
-    const wrapper = mount(TranscriptionsList, { store, localVue });
+    transcriptions = [{ id: 0, voice: '', text: '' }];
 
-    wrapper.find('button').trigger('click');
+    const wrapper = shallowMount(TranscriptionsList, { store, localVue });
+
+    wrapper.find(Button).trigger('click');
 
     expect(isAddCalled).eql(true);
   });

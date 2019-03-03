@@ -1,7 +1,7 @@
 <template>
   <main>
-    <MainColumn class="container flex column centred">
-      <ul v-if="transcriptions.length">
+    <MainColumn v-if="transcriptions.length" class="container flex column centred">
+      <ul>
         <Transcription v-for="item in transcriptions" :key="item.id" :data="item"/>
       </ul>
       <Button iconFile="add-row.svg" @click.native="add"/>
