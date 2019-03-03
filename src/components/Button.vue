@@ -1,5 +1,5 @@
 <template>
-  <button class="flex focus-outline" @keydown.enter.native="triggerClick">
+  <button class="flex focus-outline" @keydown.enter.native="triggerClick" :disabled="disabled">
     <Icon :fileName="iconFile"/>
   </button>
 </template>
@@ -11,7 +11,11 @@ export default {
   name: "Button",
 
   props: {
-    iconFile: String
+    iconFile: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
 
   components: {
@@ -26,11 +30,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 button {
   background-color: initial;
   border: none;
-  padding: 0;    
-  cursor: pointer;
+  padding: 0;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
 }
 </style>
