@@ -1,13 +1,23 @@
 <template>
   <li class="flex column">
     <div class="header flex centred">
-      <CheckBox :checked="checked" @click.native="toggleChecked(data.id)"/>
+      <CheckBox :checked="checked" @click.native="toggleChecked(item.id)"/>
       <Icon fileName="person.svg"/>
-      <input class="focus-outline" type="text" v-model="data.voice" placeholder="Enter transcription's name">
-      <Button iconFile="delete.svg" @click.native="remove(data.id)"/>
+      <input
+        class="focus-outline"
+        type="text"
+        v-model="item.voice"
+        placeholder="Enter transcription's name"
+      >
+      <Button iconFile="delete.svg" @click.native="remove(item.id)"/>
     </div>
     <ResizbleTextArea>
-      <textarea class="focus-outline" v-model.trim="data.text" rows="1" placeholder="Enter transcription's text"/>
+      <textarea
+        class="focus-outline"
+        v-model.trim="item.text"
+        rows="1"
+        placeholder="Enter transcription's text"
+      />
     </ResizbleTextArea>
   </li>
 </template>
@@ -28,12 +38,15 @@ export default {
   name: "Transcription",
 
   props: {
-    data: Object
+    item: {
+      type: Object,
+      required: true
+    }
   },
 
   computed: {
     checked() {
-      return !!this.$store.state.checked[this.data.id];
+      return !!this.$store.state.checked[this.item.id];
     }
   },
 

@@ -2,7 +2,7 @@
   <main>
     <MainColumn v-if="transcriptions.length" class="container flex column centred">
       <ul>
-        <Transcription v-for="item in transcriptions" :key="item.id" :data="item"/>
+        <Transcription v-for="item in transcriptions" :key="item.id" :item="item"/>
       </ul>
       <Button iconFile="add-row.svg" @click.native="add"/>
     </MainColumn>
