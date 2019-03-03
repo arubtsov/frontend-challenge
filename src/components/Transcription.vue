@@ -96,6 +96,7 @@ li {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     color: @transcription-name-color;
+    min-width: 0;
 
     &::placeholder {
       color: fade(@transcription-name-color, 50%);
