@@ -19,7 +19,7 @@ describe('TranscriptionsList.vue', () => {
     [ADD_TRANSCRIPTION]: () => {
       isAddCalled = true;
     }
-  }
+  };
 
   beforeEach(() => {
     transcriptions.length = 0;
