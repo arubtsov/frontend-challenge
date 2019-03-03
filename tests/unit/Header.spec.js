@@ -12,6 +12,7 @@ localVue.use(Vuex);
 
 describe('Header.vue', () => {
     let store = null;
+    let isFetched = false;
     let dataUploaded = false;
     let dataFetched = false;
 
@@ -20,11 +21,19 @@ describe('Header.vue', () => {
         [FETCH_DATA]: () => dataFetched = true
     };
 
-    beforeEach(() => {        
+    beforeEach(() => {
         dataUploaded = false;
         dataFetched = false;
 
-        store = new Vuex.Store({ actions });
+        store = new Vuex.Store({
+            state: {
+                get isFetched () {
+                    return isFetched;
+                }
+            },
+
+            actions
+        });
     });
 
     it('Should render header and two buttons', () => {
@@ -34,7 +43,23 @@ describe('Header.vue', () => {
         expect(wrapper.findAll(Button).length).eql(2);
     });
 
+    it('upload button should be disabled if data is not fetched', () => {
+        const wrapper = shallowMount(Header, { store, localVue });
+
+        expect(wrapper.findAll(Button).wrappers[0].attributes('disabled')).eql('true');
+    });
+
+    it('upload button should be enabled if itemsNumber is greater than zero', () => {
+        isFetched = true;
+
+        const wrapper = shallowMount(Header, { store, localVue });
+
+        expect(wrapper.findAll(Button).wrappers[0].attributes('disabled')).not.to.exist;
+    });
+
     it('Should Upload transcriptions on first button click', () => {
+        isFetched = true;
+
         const wrapper = shallowMount(Header, { store, localVue });
 
         wrapper.findAll(Button).wrappers[0].trigger('click');

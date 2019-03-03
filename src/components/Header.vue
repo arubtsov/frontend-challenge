@@ -2,7 +2,7 @@
   <header>
     <MainColumn class="container flex centred">
       <h1>Transcriptions</h1>
-      <Button iconFile="upload.svg" @click.native="upload()"/>
+      <Button iconFile="upload.svg" @click.native="upload()" :disabled="!isFetched"/>
       <Button iconFile="fetch-document.svg" @click.native="fetch()"/>
     </MainColumn>
   </header>
@@ -10,7 +10,7 @@
 
 <script>
 import { FETCH_DATA, UPLOAD_DATA } from "../store/action-types.js";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 import Button from "./Button";
 import MainColumn from "./MainColumn";
@@ -21,6 +21,10 @@ export default {
   components: {
     Button,
     MainColumn
+  },
+
+  computed: {
+    ...mapState(['isFetched'])
   },
 
   methods: {

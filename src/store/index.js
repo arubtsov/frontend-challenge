@@ -21,7 +21,8 @@ const ENDPOINT_URL = "http://www.mocky.io/v2/5ae1c5792d00004d009d7e5c";
 export const store = new Vuex.Store({
     state: {
         transcriptions: [],
-        checked: {}
+        checked: {},
+        isFetched: false
     },
 
     mutations: {
@@ -49,6 +50,7 @@ export const store = new Vuex.Store({
 
         [FETCH_DATA_SUCCESS] (state, transcriptions) {
             state.transcriptions = transcriptions;
+            state.isFetched = true;
         },
 
         [FETCH_DATA_FAIL] (state, error) {
@@ -82,7 +84,7 @@ export const store = new Vuex.Store({
         async [UPLOAD_DATA] ({ commit, state }) {
             try {
                 await axios.post(ENDPOINT_URL, { data: state.transcriptions });
-                
+
                 return commit(UPLOAD_DATA_SUCCESS);
             }
             catch (error) {
